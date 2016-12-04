@@ -10,8 +10,8 @@ Read the full article [here](https://medium.com/@AndyyHope)
 
 --
 
-tl;dr:
-Turn this
+###tl;dr
+####Turn this
 
 ```swift
 UIView.animate(withDuration: 0.4, animations: {
@@ -22,7 +22,7 @@ UIView.animate(withDuration: 0.4, animations: {
 }
 ```
 
-Into this
+####Into this
 
 ```swift
 UIView.Animator(duration: 0.3)

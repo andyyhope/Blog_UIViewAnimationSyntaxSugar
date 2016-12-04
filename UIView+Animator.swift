@@ -5,7 +5,7 @@
 //:  Twitter: @andyyhope
 //:  Medium: Andyy Hope, https://medium.com/@AndyyHope
 
-import UIKit
+import Foundation
 
 extension UIView {
     
@@ -49,7 +49,7 @@ extension UIView {
         private let velocity: CGFloat
         
         init(duration: TimeInterval, delay: TimeInterval = 0, damping: CGFloat, velocity: CGFloat, options: UIViewAnimationOptions = []) {
-        
+            
             self.damping = damping
             self.velocity = velocity
             
@@ -57,54 +57,3 @@ extension UIView {
         }
     }
 }
-
-
-// MARK: - Example API
-
-var view = UIView(frame: .zero)
-
-// Old Way
-
-UIView.animate(withDuration: 0.4, animations: {
-    view.frame.size.height = 100
-    view.frame.size.width = 100
-}) { finished in
-    view.backgroundColor = .black
-}
-
-// Regular Animations
-
-UIView.Animator(duration: 0.3)
-    .animations {
-        view.frame.size.height = 100
-        view.frame.size.width = 100
-    }
-    .completion { finished in
-        view.backgroundColor = .black
-    }
-    .animate()
-
-
-// Regular Animations with options
-
-UIView.Animator(duration: 0.4, delay: 0.2)
-    .animations { }
-    .completion { _ in }
-    .animate()
-
-UIView.Animator(duration: 0.4, options: [.autoreverse, .curveEaseIn])
-    .animations { }
-    .completion { _ in }
-    .animate()
-
-UIView.Animator(duration: 0.4, delay: 0.2, options: [.autoreverse, .curveEaseIn])
-    .animations { }
-    .completion { _ in }
-    .animate()
-
-// Spring Animator
-
-UIView.SpringAnimator(duration: 0.3, delay: 0.2, damping: 0.2, velocity: 0.2, options: [.autoreverse, .curveEaseIn])
-    .animations { }
-    .completion { _ in }
-    .animate()
