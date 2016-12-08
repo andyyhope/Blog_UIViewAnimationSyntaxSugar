@@ -14,11 +14,11 @@ extension UIView {
         typealias Completion = (Bool) -> Void
         typealias Animations = () -> Void
         
-        private var animations: Animations
-        private var completion: Completion?
-        private let duration: TimeInterval
-        private let delay: TimeInterval
-        private let options: UIViewAnimationOptions
+        fileprivate var animations: Animations
+        fileprivate var completion: Completion?
+        fileprivate let duration: TimeInterval
+        fileprivate let delay: TimeInterval
+        fileprivate let options: UIViewAnimationOptions
         
         init(duration: TimeInterval, delay: TimeInterval = 0, options: UIViewAnimationOptions = []) {
             self.animations = {}
@@ -39,21 +39,24 @@ extension UIView {
         }
         
         func animate() {
-            UIView.animate(withDuration: duration, animations: animations, completion: completion)
+            UIView.animate(withDuration: duration, delay: delay, animations: animations, completion: completion)
         }
     }
     
     final class SpringAnimator: Animator {
         
-        private let damping: CGFloat
-        private let velocity: CGFloat
+        fileprivate let damping: CGFloat
+        fileprivate let velocity: CGFloat
         
         init(duration: TimeInterval, delay: TimeInterval = 0, damping: CGFloat, velocity: CGFloat, options: UIViewAnimationOptions = []) {
-        
             self.damping = damping
             self.velocity = velocity
             
             super.init(duration: duration, delay: delay, options: options)
+        }
+        
+        override func animate() {
+            UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: animations, completion: completion)
         }
     }
 }
